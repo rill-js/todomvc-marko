@@ -1,0 +1,42 @@
+$ {
+  const { todos, filter } = input
+  const completed = todos.filter(todo => todo.completed)
+  const pending = todos.filter(todo => !todo.completed)
+  const display = (
+    filter === 'all' ? todos
+    : filter === 'pending' ? pending
+    : filter === 'completed' ? completed
+    : null
+  )
+}
+
+<section class="main">
+  <a href="/app/todo/toggle-all">
+    <input class="toggle-all" type="checkbox" />
+    <label for="toggle-all">Mark all as complete</label>
+  </a>
+  <ul class="todo-list">
+    <for(todo in display)>
+      <TodoItem todo=todo/>
+    </for>
+  </ul>
+</section>
+
+<footer class="footer">
+  <span class="todo-count"><strong>${pending.length}</strong> item left</span>
+  <ul class="filters">
+    <li>
+      <a class={ selected: filter === "all" } href="/">All</a>
+    </li>
+    <li>
+      <a class={ selected: filter === "pending" } href="/pending">Active</a>
+    </li>
+    <li>
+      <a class={ selected: filter === "completed" } href="/completed">Completed</a>
+    </li>
+  </ul>
+
+  <form action="/app/todo/remove-completed">
+    <button type="submit" class="clear-completed">Clear completed</button>
+  </form>
+</footer>

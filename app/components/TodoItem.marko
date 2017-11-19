@@ -1,0 +1,19 @@
+$ const { id, completed, editing, text } = input.todo;
+
+<li class={ completed, editing }>
+  <div class="view">
+    <a href=`/app/todo/toggle/${id}`>
+      <input class="toggle" type="checkbox" checked=completed />
+      <label />
+    </a>
+    <a href=`/app/todo/open/${id}`><label>${text}</label></a>
+    <form action=`/app/todo/remove/${id}`>
+      <button class="destroy" type="submit" />
+    </form>
+  </div>
+
+  <form if(editing) class="update-form" action=`/app/todo/update/${id}` method="POST">
+    <input class="edit" name="text" value=text autofocus />
+    <button type="submit" />
+  </form>
+</li>
